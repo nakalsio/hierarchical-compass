@@ -1,0 +1,19 @@
+{
+  "name": "hierarchical-compass",
+  "version": "0.1.0",
+  "description": "An example of grunt build that handles compass/sass in hierarchical structure",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Jhonghee Park",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-compass": "~0.2.0",
+    "grunt-contrib-concat": "~0.2.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-clean": "~0.4.1"
+  }
+}

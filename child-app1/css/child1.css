@@ -1,0 +1,6 @@
+/* line 3, ../sass/child1.scss */
+.compound {
+  -webkit-border-radius: 2px 3px;
+  -moz-border-radius: 2px 5px / 3px 6px;
+  border-radius: 2px 5px / 3px 6px;
+}
