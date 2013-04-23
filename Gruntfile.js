@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 
 	// Project Configuration	
 	grunt.initConfig({
+
 		pkg: grunt.file.readJSON('package.json'),
 		compass: {
 			root: {
@@ -24,7 +25,7 @@ module.exports = function(grunt) {
 					sassDir: childapp2 + '/sass',
 					cssDir: childapp2 + '/css'
 				}
-			}			
+			}
 		},
 		concat: {
 			child1: {
@@ -46,12 +47,21 @@ module.exports = function(grunt) {
 				dest: childapp2 + '/dist/' + childapp2 + '.min.css'
 			}
 		},
+		rev: {
+			options: {
+				algorithm: 'sha1',
+				length: 8
+			},
+			files: {
+				src: ['**/dist/*.{js,css,png,jpg}']
+			}
+		},
 		clean: {
-			dist: [childapp1 + 'dist', childapp2 + 'dist']
+			dist: [childapp1 + '/dist', childapp2 + '/dist']
 		},
 		watch: {
 			files: ['Gruntfile.js', './**/*.scss'],
-			tasks: ['clean', 'compass', 'concat', 'cssmin']
+			tasks: ['default']
 		}
 	});
 
@@ -64,12 +74,18 @@ module.exports = function(grunt) {
 	// Load the plugin that provides the 'cssmin' task
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
+	// Load the plugin that provides the 'rev' task
+	grunt.loadNpmTasks('grunt-rev');
+
 	// Load the plugin that provides the 'clean' task
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	// Load the plugin that provides the 'watch' task.
-	grunt.loadNpmTasks('grunt-contrib-watch');	
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Default task(s).
-	grunt.registerTask('default', ['compass', 'concat', 'cssmin']);
+	grunt.registerTask('default', ['clean', 'compass', 'concat', 'cssmin']);
+
+	// Release task
+	grunt.registerTask('release', ['default', 'rev'])
 }
