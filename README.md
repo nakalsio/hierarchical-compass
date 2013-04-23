@@ -42,6 +42,13 @@ UI Developers can run following command to kick off daemon for monitoring scss f
 > grunt watch
 ```
 
+## How to build release version of css files
+You can generate unique css file names through content hashing. The following build command will create 8 character long hash prefix for the final css artifacts.
+
+```
+> grunt release
+```
+
 The artifacts will be generated in `dist` folder under each sub project.
 
 [giturl]: http://git-scm.com/
