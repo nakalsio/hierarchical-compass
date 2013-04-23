@@ -36,12 +36,22 @@ module.exports = function(grunt) {
 				dest: childapp2 + '/dist/' + childapp2 + '.css'
 			}
 		},
+		cssmin: {
+			child1: {
+				src: [rootapp + '/css/*.css', childapp1 + '/css/*.css'],
+				dest: childapp1 + '/dist/' + childapp1 + '.min.css'
+			},
+			child2: {
+				src: [rootapp + '/css/*.css', childapp2 + '/css/*.css'],
+				dest: childapp2 + '/dist/' + childapp2 + '.min.css'
+			}
+		},
 		clean: {
 			dist: [childapp1 + 'dist', childapp2 + 'dist']
 		},
 		watch: {
 			files: ['Gruntfile.js', './**/*.scss'],
-			tasks: ['clean', 'compass', 'concat']
+			tasks: ['clean', 'compass', 'concat', 'cssmin']
 		}
 	});
 
@@ -51,6 +61,9 @@ module.exports = function(grunt) {
 	// Load the plugin that provides the 'concat' task
 	grunt.loadNpmTasks('grunt-contrib-concat');
 
+	// Load the plugin that provides the 'cssmin' task
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+
 	// Load the plugin that provides the 'clean' task
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
@@ -58,5 +71,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');	
 
 	// Default task(s).
-	grunt.registerTask('default', ['compass', 'concat']);
+	grunt.registerTask('default', ['compass', 'concat', 'cssmin']);
 }
